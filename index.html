@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <title>Vizy</title>
+  <link rel="stylesheet" href="lib/vizy.css" />
+  <script src="lib/vendor/underscore.js"></script>
+  <script src="lib/class.js"></script>
+  <script src="lib/audio.js"></script>
+  <script src="lib/shapes.js"></script>
+  <script src="lib/formations.js"></script>
+  <script src="lib/slider.js"></script>
+  <script src="lib/canvas-helper.js"></script>
+  <script src="lib/animation.js"></script>
+  <script src="lib/init.js"></script>
+</head>
+<body>
+  <canvas></canvas>
+  <div class="control-panel">
+    <div class="controls">
+      <label>Song: <input class="song-url" type="file" /></label>
+      <label>Frequency selection:
+        [Q]<input class="slider frequency-selection-slider" type="range" min="0" max="10" step="0.5" value="5" />[E]
+      </label>
+      <label>Rotation speed:
+        [A]<input class="slider rotation-speed-slider" type="range" min="0" max="2" step="0.1" value="1" />[D]
+      </label>
+      <label>Tail length:
+        [S]<input class="slider tail-length-slider" type="range" min="0" max="50" step="5" value="10" />[W]
+      </label>
+    </div>
+  </div>
+</body>
+</html>
