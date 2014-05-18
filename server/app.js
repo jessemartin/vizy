@@ -4,7 +4,7 @@ module.exports = function () {
     app = express(),
     DIST_DIR = __dirname + '/../dist',
     VENDOR_DIR = __dirname + '/../vendor',
-    PORT = rocess.env.PORT || 5000;
+    PORT = process.env.PORT || 5000;
 
   app.use(express.static(DIST_DIR));
   app.use(express.static(VENDOR_DIR));
