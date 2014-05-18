@@ -7,7 +7,6 @@ define([
   'lib/slider'
 ], function (_, List, CanvasHelper, AudioFileReader, Orbit, Slider) {
   function AnimationApp (opts) {
-    debugger;
     this.settings = {};
     // Rquires DOM
     this.playlist = new List(document.getElementsByClassName('playlist')[0]);
