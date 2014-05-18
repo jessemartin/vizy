@@ -2,10 +2,11 @@ define([
   'underscore',
   'lib/list',
   'lib/canvas-helper',
-  'lib/audio',
+  'lib/audio-file-reader',
   'lib/orbit',
-  'lib/slider'
-], function (_, List, CanvasHelper, AudioFileReader, Orbit, Slider) {
+  'lib/slider',
+  'views/drop-placeholder'
+], function (_, List, CanvasHelper, AudioFileReader, Orbit, Slider, DropPlaceholder) {
   function AnimationApp (opts) {
     this.settings = {};
     // Rquires DOM
@@ -18,6 +19,9 @@ define([
     this.orbit = new Orbit({ radius: 50 });
     this.orbit.centerOn(this.canvas);
     this.setupControls();
+
+    this.dropPlaceholder = new DropPlaceholder();
+    document.body.appendChild(this.dropPlaceholder.render().el);
 
     window.addEventListener('resize', _.debounce((function () {
       this.canvas.fillWindow();
@@ -52,6 +56,7 @@ define([
 
       // TODO: Implement queue(files) on audioFileReader
       this.audioFileReader.setFile(files[0]);
+      this.dropPlaceholder.remove();
     },
     stopEvent: function (evt) {
       evt.preventDefault();

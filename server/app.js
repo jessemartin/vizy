@@ -13,10 +13,6 @@ module.exports = function () {
     res.sendfile('/index.html', { 'root': DIST_DIR });
   });
 
-  // app.get('/vendor/*.js', function (req, res) {
-  //   res.sendfile('/' + req.url.replace('vendor/', '/'), { 'root': VENDOR_DIR });
-  // });
-
   app.get('*.js', function (req, res) {
     res.sendfile('/' + req.url, { 'root': DIST_DIR });
   });

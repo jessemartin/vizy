@@ -52,7 +52,8 @@
         paths: {
           jquery: '../../vendor/jquery/dist/jquery',
           underscore: '../../vendor/underscore/underscore',
-          backbone: '../../vendor/backbone/backbone'
+          backbone: '../../vendor/backbone/backbone',
+          mustache: '../../vendor/mustache/mustache'
         },
         waitSeconds: 15,
         optimize: 'uglify2',

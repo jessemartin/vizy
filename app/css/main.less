@@ -1,3 +1,7 @@
+@import "components/control-panel.less";
+@import "components/drop-placeholder.less";
+@import "components/playlist.less";
+
 body, input {
   font-family: Verdana;
 }
@@ -12,35 +16,4 @@ body {
 
 canvas {
   background-color: black;
-}
-
-.control-panel {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  text-align: left;
-}
-
-.controls .slider {
-  width: 100px;
-  margin: 2px 4px;
-  position: relative;
-  bottom: -3px;
-}
-.controls > .readout {
-  display: inline-block;
-}
-.controls > label {
-  display: block;
-}
-
-.playlist {
-  position: absolute;
-  left: 20px;
-  top: 200px;
-  color: white;
-  list-style: none;
-}
-.playlist > li {
-  border-bottom: 1px solid #555;
 }
