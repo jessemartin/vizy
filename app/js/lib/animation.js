@@ -7,9 +7,9 @@ define([
   'lib/slider',
   'views/drop-placeholder'
 ], function (_, List, CanvasHelper, AudioFileReader, Orbit, Slider, DropPlaceholder) {
+  'use strict';
   function AnimationApp (opts) {
     this.settings = {};
-    // Rquires DOM
     this.playlist = new List(document.getElementsByClassName('playlist')[0]);
     this.canvas = new CanvasHelper({ element: opts.element });
     this.canvas.fillWindow();
@@ -63,10 +63,11 @@ define([
       evt.stopPropagation();
     },
     startLoop: function () {
-      var loop = animationLoop.bind(this),
+      var loop = animationLoop,
         magnitudeAtSegment = function (segment) {
           return frequencies[Math.floor(segment / 10 * frequencies.length)];
         },
+        self = this,
         frequencies;
 
       // Memoize for perf
@@ -77,15 +78,15 @@ define([
 
       loop();
       function animationLoop () {
-        this.canvas.clear();
-        updateState.call(this);
+        self.canvas.clear();
+        updateState.call(self);
         draw(context);
         reqFrame(loop);
       }
       function updateState () {
-        var orbit = this.orbit;
+        var orbit = self.orbit;
 
-        frequencies = this.audioFileReader.frequencyData();
+        frequencies = self.audioFileReader.frequencyData();
         if (orbit.getSpeed() !== settings.speed) {
           orbit.setSpeed(settings.speed);
         }
@@ -94,7 +95,7 @@ define([
         if (orbit.objects[0].tailLength !== settings.tail) {
           orbit.eachObject(function (object) {
             object.tailLength = settings.tail;
-          }, this);
+          }, self);
         }
       }
     },

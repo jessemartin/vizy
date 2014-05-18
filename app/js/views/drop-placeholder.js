@@ -1,4 +1,5 @@
 define(['backbone', 'mustache'], function (Backbone, Mustache) {
+  'use strict';
   return Backbone.View.extend({
     className: 'drop-placeholder',
     template: [

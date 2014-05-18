@@ -1,4 +1,5 @@
 define(function () {
+  'use strict';
   function CanvasHelper (opts) {
     this.element = opts.element;
     this.context = this.element.getContext('2d');
