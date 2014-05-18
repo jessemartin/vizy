@@ -4,6 +4,8 @@
   "description": "Canvas music visualizer",
   "main": "server/start.js",
   "scripts": {
+    "start": "node server/start.js",
+    "postinstall": "npm install && bower install && gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
