@@ -1,12 +1,12 @@
 define([
   'underscore',
-  'lib/list',
   'lib/canvas-helper',
   'lib/audio-file-reader',
   'lib/orbit',
   'lib/slider',
+  'views/list',
   'views/drop-placeholder'
-], function (_, List, CanvasHelper, AudioFileReader, Orbit, Slider, DropPlaceholder) {
+], function (_, CanvasHelper, AudioFileReader, Orbit, Slider, List, DropPlaceholder) {
   'use strict';
   function AnimationApp (opts) {
     this.settings = {};
