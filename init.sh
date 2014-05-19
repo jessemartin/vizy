@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-rm -rf node_modules
-rm -rf vendor
 npm install
-bower install
-gulp build
+node node_modules/bower/bin/bower install
+node node_modules/gulp/bin/gulp.js build
