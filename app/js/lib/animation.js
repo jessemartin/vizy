@@ -5,8 +5,18 @@ define([
   'lib/orbit',
   'lib/slider',
   'views/list',
-  'views/drop-placeholder'
-], function (_, CanvasHelper, AudioFileReader, Orbit, Slider, List, DropPlaceholder) {
+  'views/drop-placeholder',
+  'config/sliders'
+], function (
+  _,
+  CanvasHelper,
+  AudioFileReader,
+  Orbit,
+  Slider,
+  List,
+  DropPlaceholder,
+  sliderConfigs
+) {
   'use strict';
   function AnimationApp (opts) {
     this.settings = {};
@@ -14,7 +24,6 @@ define([
     this.canvas = new CanvasHelper({ element: opts.element });
     this.canvas.fillWindow();
 
-    // Callback requires canvas and loop
     this.audioFileReader = new AudioFileReader(this.startLoop.bind(this));
     this.orbit = new Orbit({ radius: 50 });
     this.orbit.centerOn(this.canvas);
@@ -30,14 +39,7 @@ define([
   }
   AnimationApp.prototype = {
     setupControls: function () {
-      var self = this,
-        sliderOpts = [
-          { name: 'frequency', bindings: { dec: 81, inc: 69 }, selector: 'frequency-selection-slider' },
-          { name: 'speed', bindings: { dec: 65, inc: 68 }, selector: 'rotation-speed-slider', unit: ' x' },
-          { name: 'tail', bindings: { dec: 83, inc: 87 }, selector: 'tail-length-slider', unit: ' frames' },
-        ];
-
-      _.each(sliderOpts, function (opts) {
+      _.each(sliderConfigs, function (opts) {
         new Slider(opts, function (name, value) {
           this.settings[name] = value;
         }, this);
@@ -54,7 +56,6 @@ define([
         this.playlist.add(file);
       }, this);
 
-      // TODO: Implement queue(files) on audioFileReader
       this.audioFileReader.setFile(files[0]);
       this.dropPlaceholder.remove();
     },
