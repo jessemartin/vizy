@@ -5,7 +5,7 @@
   "description": "Canvas music visualizer",
   "main": "server/start.js",
   "scripts": {
-    "start": "./init.sh && node server/start.js",
+    "start": "./init.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
