@@ -3,6 +3,7 @@
 
 A webaudio + canvas music visualizer.
 
+<img src="http://i.imgur.com/7H7Fztz.png" alt="vizy screenshot" />
 
 Installation
 ------------
