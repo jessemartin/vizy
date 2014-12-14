@@ -4,10 +4,9 @@
     gulp = require('gulp'),
     child_process = require('child_process'),
     changed = require('gulp-changed'),
-    clean = require('gulp-clean'),
     uglify = require('gulp-uglify'),
     less = require('gulp-less'),
-    imagemin = require('gulp-imagemin'),
+    del = require('del'),
     server = require('./server/app.js'),
     LESS_DIR = 'app/css',
     JS_DIR = 'app/js',
@@ -15,14 +14,11 @@
     JS_DIST = 'dist/js';
 
   gulp.task('clean', function (cb) {
-    gulp.src('dist', { read: false })
-      .pipe(clean())
-      .on('end', cb);
+    del('dist', cb);
   });
 
   gulp.task('images', ['clean'], function () {
     return gulp.src('app/img/*')
-        .pipe(imagemin({ optimizationLevel: 0 }))
         .pipe(gulp.dest('dist/img'));
   });
 
