@@ -3,6 +3,7 @@ define(function () {
   function CanvasHelper (opts) {
     this.element = opts.element;
     this.context = this.element.getContext('2d');
+    this.fillWindow();
   }
   CanvasHelper.prototype = {
     clear: function () {

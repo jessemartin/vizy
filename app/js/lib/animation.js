@@ -22,7 +22,6 @@ define([
     this.settings = {};
     this.playlist = new List(document.getElementsByClassName('playlist')[0]);
     this.canvas = new CanvasHelper({ element: opts.element });
-    this.canvas.fillWindow();
 
     this.audioFileReader = new AudioFileReader(this.startLoop.bind(this));
     this.orbit = new Orbit({ radius: 50 });
