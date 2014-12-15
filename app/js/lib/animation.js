@@ -20,12 +20,13 @@ define([
   'use strict';
   function AnimationApp (opts) {
     this.settings = {};
+    this.subscribeToEvents();
+
     this.playlist = new List(document.getElementsByClassName('playlist')[0]);
     this.canvas = new CanvasHelper({ element: opts.element });
 
     this.audioFileReader = new AudioFileReader(this.startLoop.bind(this));
     this.orbit = new Orbit({ radius: 50, element: opts.element });
-    this.orbit.centerOn(this.canvas);
     this.setupControls();
 
     this.dropPlaceholder = new DropPlaceholder();
@@ -38,24 +39,14 @@ define([
           this.settings[name] = value;
         }, this);
       }, this);
-
-      document.body.addEventListener('dragover', this.stopEvent.bind(this));
-      document.body.addEventListener('dragenter', this.stopEvent.bind(this));
-      document.body.addEventListener('drop', this.handleDrop.bind(this));
     },
-    handleDrop: function (evt) {
-      var files = evt.dataTransfer.files;
-      this.stopEvent(evt);
-      _.each(files, function (file) {
-        this.playlist.add(file);
-      }, this);
-
-      this.audioFileReader.setFile(files[0]);
-      this.dropPlaceholder.remove();
-    },
-    stopEvent: function (evt) {
-      evt.preventDefault();
-      evt.stopPropagation();
+    subscribeToEvents: function (evt) {
+      Backbone.on('drop/files', (function (files) {
+        _.each(files, function (file) {
+          this.playlist.add(file);
+        }, this);
+        this.audioFileReader.setFile(files[0]);
+      }).bind(this));
     },
     startLoop: function () {
       var loop = animationLoop,
