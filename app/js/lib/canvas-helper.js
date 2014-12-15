@@ -4,6 +4,10 @@ define(function () {
     this.element = opts.element;
     this.context = this.element.getContext('2d');
     this.fillWindow();
+
+    window.addEventListener('resize', _.debounce((function () {
+      this.fillWindow();
+    }).bind(this), 100,  false));
   }
   CanvasHelper.prototype = {
     clear: function () {

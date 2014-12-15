@@ -6,11 +6,16 @@ define(['lib/circle'], function (Circle) {
     this.speed = 0;
     this.adjustment = 120;
     this.position = { x: 0, y: 0 };
+    this.element = opts.element;
 
     for (var i = 0, orbs = []; i++ < 9;) {
       orbs.push(new Circle({ radius: 6 }));
     }
     this.setObjects(orbs);
+
+    window.addEventListener('resize', _.debounce((function () {
+      this.centerOn(this.canvas);
+    }).bind(this), 100,  false));
   }
   Orbit.prototype = {
     draw: function (context) {
@@ -18,8 +23,9 @@ define(['lib/circle'], function (Circle) {
         object.draw(context);
       });
     },
-    centerOn: function (element) {
-      this.position = { x: element.width() / 2, y: element.height() / 2 };
+    center: function () {
+      var el = this.element;
+      this.position = { x: el.width() / 2, y: el.height() / 2 };
     },
     getSpeed: function () {
       return this.speed * this.adjustment;

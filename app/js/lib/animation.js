@@ -24,17 +24,12 @@ define([
     this.canvas = new CanvasHelper({ element: opts.element });
 
     this.audioFileReader = new AudioFileReader(this.startLoop.bind(this));
-    this.orbit = new Orbit({ radius: 50 });
+    this.orbit = new Orbit({ radius: 50, element: opts.element });
     this.orbit.centerOn(this.canvas);
     this.setupControls();
 
     this.dropPlaceholder = new DropPlaceholder();
     document.body.appendChild(this.dropPlaceholder.render().el);
-
-    window.addEventListener('resize', _.debounce((function () {
-      this.canvas.fillWindow();
-      this.orbit.centerOn(this.canvas);
-    }).bind(this), 100,  false));
   }
   AnimationApp.prototype = {
     setupControls: function () {
